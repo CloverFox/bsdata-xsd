@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.cloverfox</groupId>
 	<artifactId>bsdata-xsd</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>bsdata-xsd</name>
 	<description>xsd for use when importing bsdata cat files</description>
 

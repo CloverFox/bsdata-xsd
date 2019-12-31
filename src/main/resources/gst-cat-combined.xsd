@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.battlescribe.net/schema/catalogueSchema" xmlns:ns1="http://www.battlescribe.net/schema/catalogueSchema">
+  <xs:element name="catalogue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:publications"/>
+        <xs:element minOccurs="0" ref="ns1:profileTypes"/>
+        <xs:element minOccurs="0" ref="ns1:categoryEntries"/>
+        <xs:element minOccurs="0" ref="ns1:forceEntries"/>
+        <xs:element minOccurs="0" ref="ns1:selectionEntries"/>
+        <xs:element minOccurs="0" ref="ns1:entryLinks"/>
+        <xs:element minOccurs="0" ref="ns1:rules"/>
+        <xs:element minOccurs="0" ref="ns1:infoLinks"/>
+        <xs:element ref="ns1:sharedSelectionEntries"/>
+        <xs:element minOccurs="0" ref="ns1:sharedSelectionEntryGroups"/>
+        <xs:element minOccurs="0" ref="ns1:sharedRules"/>
+        <xs:element minOccurs="0" ref="ns1:sharedProfiles"/>
+        <xs:element minOccurs="0" ref="ns1:sharedInfoGroups"/>
+        <xs:element minOccurs="0" ref="ns1:catalogueLinks"/>
+      </xs:sequence>
+      <xs:attribute name="authorContact" use="required"/>
+      <xs:attribute name="authorName" use="required"/>
+      <xs:attribute name="authorUrl" use="required" type="xs:anyURI"/>
+      <xs:attribute name="battleScribeVersion" use="required" type="xs:decimal"/>
+      <xs:attribute name="gameSystemId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="gameSystemRevision" use="required" type="xs:integer"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="library" use="required" type="xs:boolean"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="revision" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="publications">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:publication"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="publication">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="profileTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:profileType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="profileType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns1:characteristicTypes"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="characteristicTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:characteristicType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="characteristicType">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="categoryEntries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:categoryEntry"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="categoryEntry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:modifiers"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="ns1:constraints"/>
+          <xs:element ref="ns1:infoLinks"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="page"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sharedSelectionEntries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:selectionEntry"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sharedSelectionEntryGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:selectionEntryGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sharedRules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:rule"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sharedProfiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:profile"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sharedInfoGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:infoGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="infoGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:rules"/>
+        <xs:element minOccurs="0" ref="ns1:modifiers"/>
+        <xs:element minOccurs="0" ref="ns1:profiles"/>
+        <xs:element minOccurs="0" ref="ns1:infoLinks"/>
+      </xs:sequence>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="catalogueLinks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ns1:catalogueLink"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="catalogueLink">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="importRootEntries" use="required" type="xs:boolean"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="targetId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="modifiers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:modifier"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="modifier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:repeats"/>
+        <xs:element minOccurs="0" ref="ns1:conditions"/>
+        <xs:element minOccurs="0" ref="ns1:conditionGroups"/>
+      </xs:sequence>
+      <xs:attribute name="field" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="repeats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:repeat"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="repeat">
+    <xs:complexType>
+      <xs:attribute name="childId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="field" use="required" type="xs:NCName"/>
+      <xs:attribute name="includeChildForces" use="required" type="xs:boolean"/>
+      <xs:attribute name="includeChildSelections" use="required" type="xs:boolean"/>
+      <xs:attribute name="percentValue" use="required" type="xs:boolean"/>
+      <xs:attribute name="repeats" use="required" type="xs:integer"/>
+      <xs:attribute name="roundUp" use="required" type="xs:boolean"/>
+      <xs:attribute name="scope" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="shared" use="required" type="xs:boolean"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="infoLinks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:infoLink"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="infoLink">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:modifiers"/>
+      </xs:sequence>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name"/>
+      <xs:attribute name="page"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+      <xs:attribute name="targetId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="constraints">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:constraint"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="constraint">
+    <xs:complexType>
+      <xs:attribute name="field" use="required" type="xs:NCName"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="includeChildForces" use="required" type="xs:boolean"/>
+      <xs:attribute name="includeChildSelections" use="required" type="xs:boolean"/>
+      <xs:attribute name="percentValue" use="required" type="xs:boolean"/>
+      <xs:attribute name="scope" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="shared" use="required" type="xs:boolean"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="forceEntries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:forceEntry"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="forceEntry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:forceEntries"/>
+        <xs:element ref="ns1:categoryLinks"/>
+      </xs:sequence>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="page" type="xs:integer"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectionEntries">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:selectionEntry"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="entryLinks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:entryLink"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="entryLink">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="ns1:categoryLinks"/>
+          <xs:element ref="ns1:constraints"/>
+          <xs:element ref="ns1:entryLinks"/>
+          <xs:element ref="ns1:infoLinks"/>
+          <xs:element ref="ns1:modifierGroups"/>
+          <xs:element ref="ns1:modifiers"/>
+          <xs:element ref="ns1:profiles"/>
+        </xs:choice>
+        <xs:choice minOccurs="0">
+          <xs:element ref="ns1:costs"/>
+          <xs:element ref="ns1:selectionEntryGroups"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="collective" use="required" type="xs:boolean"/>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="import" use="required" type="xs:boolean"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="page"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+      <xs:attribute name="targetId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rules">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:rule"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectionEntry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="ns1:categoryLinks"/>
+          <xs:element ref="ns1:constraints"/>
+          <xs:element ref="ns1:infoLinks"/>
+          <xs:element ref="ns1:modifierGroups"/>
+          <xs:element ref="ns1:modifiers"/>
+          <xs:element ref="ns1:profiles"/>
+          <xs:element ref="ns1:rules"/>
+          <xs:element ref="ns1:selectionEntries"/>
+          <xs:element ref="ns1:selectionEntryGroups"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="ns1:entryLinks"/>
+        <xs:element minOccurs="0" ref="ns1:costs"/>
+      </xs:sequence>
+      <xs:attribute name="collective" use="required" type="xs:boolean"/>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="import" use="required" type="xs:boolean"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="page"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectionEntryGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="ns1:categoryLinks"/>
+          <xs:element ref="ns1:constraints"/>
+          <xs:element ref="ns1:modifierGroups"/>
+          <xs:element ref="ns1:modifiers"/>
+          <xs:element ref="ns1:selectionEntries"/>
+          <xs:element ref="ns1:selectionEntryGroups"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="ns1:entryLinks"/>
+      </xs:sequence>
+      <xs:attribute name="collective" use="required" type="xs:boolean"/>
+      <xs:attribute name="defaultSelectionEntryId" type="xs:NMTOKEN"/>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="import" use="required" type="xs:boolean"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="page"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:modifiers"/>
+        <xs:element minOccurs="0" ref="ns1:description"/>
+      </xs:sequence>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="page"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="description" type="xs:string"/>
+  <xs:element name="profile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="ns1:modifierGroups"/>
+          <xs:element ref="ns1:modifiers"/>
+        </xs:choice>
+        <xs:element ref="ns1:characteristics"/>
+      </xs:sequence>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="page"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+      <xs:attribute name="typeId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="typeName" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="characteristics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:characteristic"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="characteristic">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" use="required"/>
+      <xs:attribute name="typeId" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="profiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:profile"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="conditions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:condition"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="condition">
+    <xs:complexType>
+      <xs:attribute name="childId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="field" use="required" type="xs:NCName"/>
+      <xs:attribute name="includeChildForces" use="required" type="xs:boolean"/>
+      <xs:attribute name="includeChildSelections" use="required" type="xs:boolean"/>
+      <xs:attribute name="percentValue" use="required" type="xs:boolean"/>
+      <xs:attribute name="scope" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="shared" use="required" type="xs:boolean"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="conditionGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:conditionGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="conditionGroup">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ns1:conditionGroups"/>
+        <xs:element ref="ns1:conditions"/>
+      </xs:choice>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="categoryLinks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:categoryLink"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="categoryLink">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="ns1:modifiers"/>
+        <xs:element minOccurs="0" ref="ns1:constraints"/>
+      </xs:sequence>
+      <xs:attribute name="hidden" use="required" type="xs:boolean"/>
+      <xs:attribute name="id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="name"/>
+      <xs:attribute name="primary" use="required" type="xs:boolean"/>
+      <xs:attribute name="publicationId" type="xs:NMTOKEN"/>
+      <xs:attribute name="targetId" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="modifierGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:modifierGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="modifierGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="ns1:conditionGroups"/>
+          <xs:element ref="ns1:conditions"/>
+        </xs:choice>
+        <xs:element ref="ns1:modifiers"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="costs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ns1:cost"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cost">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="typeId" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="selectionEntryGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ns1:selectionEntryGroup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

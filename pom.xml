@@ -18,6 +18,7 @@
 		<jakarta.activation.version>1.2.1</jakarta.activation.version>
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 		<cxf-xjc-plugin.versopn>3.3.0</cxf-xjc-plugin.versopn>
+		<maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -48,6 +49,11 @@
 				<configuration>
 					<release>${java.version}</release>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven-deploy-plugin.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.cxf</groupId>
